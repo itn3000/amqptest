@@ -85,7 +85,7 @@ namespace ConsoleApplication
         }
         static async Task OpenContainerHost(string address, CancellationToken ctoken, ManualResetEventSlim ev)
         {
-            var host = new ContainerHost(new Uri("amqp://guest:guest@127.0.0.1:9001"));
+            var host = new ContainerHost(new Uri(address));
             try
             {
                 host.Open();
@@ -111,7 +111,7 @@ namespace ConsoleApplication
             {
                 var addr = "amqp://guest:guest@127.0.0.1:9001";
                 var srvTask = OpenContainerHost(addr, csrc.Token, ev);
-                // wait for 
+                // wait for ready
                 ev.Wait();
                 var allsw = new System.Diagnostics.Stopwatch();
                 allsw.Start();
